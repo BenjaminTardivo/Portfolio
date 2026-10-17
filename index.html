@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — The Outer Wilds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Starfield -->
+  <canvas id="starfield"></canvas>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="lang-btn-wrap">
+      <button id="lang-toggle" class="lang-btn" aria-label="Toggle language">
+        <span class="lang-active">EN</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-inactive">ES</span>
+      </button>
+    </div>
+    <div class="campfire-container">
+      <div class="campfire-glow"></div>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fire -->
+        <ellipse cx="100" cy="105" rx="22" ry="35" fill="#ff6b2b" opacity="0.9">
+          <animate attributeName="ry" values="35;38;33;35" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.9;1;0.85;0.9" dur="2s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="100" cy="100" rx="14" ry="25" fill="#ffc857" opacity="0.9">
+          <animate attributeName="ry" values="25;28;23;25" dur="1.2s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="100" cy="98" rx="7" ry="14" fill="#fff5e0" opacity="0.8">
+          <animate attributeName="ry" values="14;16;12;14" dur="1s" repeatCount="indefinite"/>
+        </ellipse>
+        <!-- Logs -->
+        <line x1="70" y1="140" x2="105" y2="130" stroke="#5a3a1a" stroke-width="6" stroke-linecap="round"/>
+        <line x1="130" y1="140" x2="95" y2="130" stroke="#4a2a10" stroke-width="6" stroke-linecap="round"/>
+        <line x1="80" y1="142" x2="120" y2="142" stroke="#3a2010" stroke-width="5" stroke-linecap="round"/>
+        <!-- Sparks -->
+        <circle cx="95" cy="80" r="1.5" fill="#ffc857" opacity="0.8">
+          <animate attributeName="cy" values="80;60;40" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0.4;0" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="108" cy="75" r="1" fill="#ff9a3c" opacity="0.7">
+          <animate attributeName="cy" values="75;55;30" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0.3;0" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="100" cy="70" r="1.2" fill="#ffe4b5" opacity="0.6">
+          <animate attributeName="cy" values="70;45;20" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0.2;0" dur="3s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+    <h1 class="hero-title" data-i18n="hero.title">Welcome, Traveler</h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">Explore my corner of the solar system</p>
+    <div class="scroll-hint" data-i18n="hero.scroll">Begin your journey</div>
+  </section>
+
+  <!-- Lightbox for project images -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" src="" alt="Project image">
+    <button class="lightbox-prev" aria-label="Previous">&#x2190;</button>
+    <button class="lightbox-next" aria-label="Next">&#x2192;</button>
+  </div>
+
+  <!-- ===== SOLAR SYSTEM ===== -->
+  <section class="solar-system" id="explore">
+    <h2 class="section-heading" data-i18n="solar.heading">The Solar System</h2>
+    <p class="section-sub" data-i18n="solar.sub">Choose a planet to explore</p>
+
+    <div class="orbit-controls">
+      <button id="orbit-toggle" class="orbit-toggle" aria-pressed="true">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span class="toggle-label" data-i18n="solar.orbit">Orbit</span>
+      </button>
+    </div>
+
+    <div class="orbit-ring">
+      <div class="orbit-line orbit-about" data-radius="0.26"></div>
+      <div class="orbit-line orbit-projects" data-radius="0.34"></div>
+      <div class="orbit-line orbit-skills" data-radius="0.42"></div>
+      <div class="orbit-line orbit-contact" data-radius="0.50"></div>
+
+      <!-- Sun -->
+      <div class="sun" onclick="scrollToSection('home')">
+        <img src="img/SolC.svg" alt="Hearth Station">
+        <span class="planet-label" data-i18n="nav.home">Home</span>
+      </div>
+
+      <!-- Planet: About — Hourglass Twins (closest) -->
+      <div class="planet-orbit" data-radius="0.26" data-speed="8" data-start="-90" data-dir="-1">
+        <a class="planet planet-about" href="#about">
+          <img src="img/Hourglass TwinsC.svg" alt="Hourglass Twins">
+          <span class="planet-label" data-i18n="nav.about">About Me</span>
+        </a>
+      </div>
+
+      <!-- Planet: Projects — Timber Hearth -->
+      <div class="planet-orbit" data-radius="0.34" data-speed="5" data-start="0" data-dir="-1">
+        <a class="planet planet-projects" href="#projects">
+          <img src="img/TimberHearthSolo.svg" alt="Timber Hearth">
+          <span class="planet-label" data-i18n="nav.projects">Projects</span>
+        </a>
+        <!-- Moon: The Attlerock -->
+        <div class="moon-orbit moon-attlerock">
+          <img class="moon" src="img/The Attlerock.svg" alt="The Attlerock">
+        </div>
+      </div>
+
+      <!-- Planet: Skills — Brittle Hollow -->
+      <div class="planet-orbit" data-radius="0.42" data-speed="8" data-start="90" data-dir="1">
+        <a class="planet planet-skills" href="#skills">
+          <img src="img/Brittle HollowA.svg" alt="Brittle Hollow">
+          <span class="planet-label" data-i18n="nav.skills">Skills</span>
+        </a>
+        <!-- Moon: Hollow's Lantern -->
+        <div class="moon-orbit moon-hollows-lantern">
+          <img class="moon" src="img/Hollow's Lantern.svg" alt="Hollow's Lantern">
+        </div>
+      </div>
+
+      <!-- Planet: Contact — Giant's Deep (farthest) -->
+      <div class="planet-orbit" data-radius="0.50" data-speed="5" data-start="180" data-dir="1">
+        <a class="planet planet-contact" href="#contact">
+          <img src="img/Giant's DeepA.svg" alt="Giant's Deep">
+          <span class="planet-label" data-i18n="nav.contact">Contact</span>
+        </a>
+        <!-- Moon 1: Quantic Moon -->
+        <div class="moon-orbit moon-quantic">
+          <img class="moon" src="img/Quantic Moon.png" alt="Quantic Moon">
+        </div>
+        <!-- Moon 2: The gravity Canon -->
+        <div class="moon-orbit moon-canon">
+          <img class="moon" src="img/Gravity Canon.svg" alt="The Interloper">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="content-section" id="about">
+    <div class="ship-log reveal">
+      <h2 data-i18n="about.heading">The Traveler</h2>
+      <div class="ship-log-body">
+      <svg class="nomai-spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C70 10, 85 25, 85 45 C85 65, 70 80, 50 80 C30 80, 18 68, 18 50 C18 35, 28 23, 42 20 C52 18, 60 24, 62 33 C64 40, 58 48, 50 48 C43 48, 38 42, 40 36"
+              fill="none" stroke="var(--nomai-gold)" stroke-width="2.5" opacity="0.5"/>
+      </svg>
+      <div class="about-intro">
+        <div class="about-portrait">
+          <img src="img/TheTraveler.jpeg" alt="The Traveler">
+        </div>
+        <p data-i18n="about.bio">
+          Hi, I'm Benjamin — a developer driven by curiosity and the desire to understand how things work.
+
+          My journey began with game development, where I built a strong foundation in programming with C#.
+          Since then, I've been exploring new areas of software development, from desktop applications and
+          database systems to automation and API integrations.
+
+          I believe every project is an opportunity to learn something new, solve an interesting problem,
+          and build something meaningful. I'm always eager to explore unfamiliar technologies, experiment
+          with ideas, and keep growing as a developer.
+
+          This portfolio is a collection of the things I've built, the challenges I've faced, and the
+          discoveries I've made along the way.
+        </p>
+      </div>
+      <div class="about-grid">
+        <div class="about-item">
+          <h3 data-i18n="about.explore">🔭 Currently Exploring</h3>
+          <p data-i18n="about.explore.desc">Expanding my horizons beyond game development into .NET, desktop applications, databases, and automation.</p>
+        </div>
+        <div class="about-item">
+          <h3 data-i18n="about.jam">🎵 The Jam</h3>
+          <p data-i18n="about.jam.desc">A good soundtrack, a curious mind, and a new problem to solve. That's my kind of adventure.</p>
+        </div>
+        <div class="about-item">
+          <h3 data-i18n="about.philosophy">🪐 Philosophy</h3>
+          <p data-i18n="about.philosophy.desc">Stay curious, embrace challenges, and treat every mistake as another opportunity to learn.</p>
+        </div>
+        <div class="about-item">
+          <h3 data-i18n="about.home">🏕️ Home Base</h3>
+          <p data-i18n="about.home.desc">A Linux-powered workshop where ideas turn into code and experiments become real projects.</p>
+        </div>
+      </div>
+
+      <div class="education-section">
+        <h3 class="education-heading" data-i18n="about.edu">🎓 – Education</h3>
+        <div class="education-list">
+          <div class="education-entry">
+            <span class="education-year">2019 — 2023</span>
+            <div class="education-info">
+              <h4 data-i18n="about.edu1.degree">Technical Degree in Video Game Development and Interactiva Narrative</h4>
+              <p>Universidad Nacional de Rafaela</p>
+            </div>
+          </div>
+          <div class="education-entry">
+            <span class="education-year">2023 — 2025</span>
+            <div class="education-info">
+              <h4 data-i18n="about.edu2.degree">Bachelor's Degree in Video Game Production and Digital Entertainment</h4>
+              <p>Universiada Nacional de Rafaela</p>
+            </div>
+          </div>
+          <div class="education-entry">
+            <span class="education-year">2026 — Ongoing</span>
+            <div class="education-info">
+              <h4 data-i18n="about.edu3.degree">University Technical Degree in Programming</h4>
+              <p>Universidad Tecnologica Nacional</p>
+            </div>
+          </div>
+          <div class="education-entry">
+            <span class="education-year">2022</span>
+            <div class="education-info">
+              <h4 data-i18n="about.edu4.degree">Web Development Bootcamp</h4>
+              <p>Argentina Programa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="content-section" id="projects">
+    <div class="ship-log reveal">
+      <h2 data-i18n="projects.heading">Signal Clues</h2>
+      <div class="ship-log-body">
+      <svg class="nomai-spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C70 10, 85 25, 85 45 C85 65, 70 80, 50 80 C30 80, 18 68, 18 50 C18 35, 28 23, 42 20 C52 18, 60 24, 62 33 C64 40, 58 48, 50 48 C43 48, 38 42, 40 36"
+              fill="none" stroke="var(--nomai-gold)" stroke-width="2.5" opacity="0.5"/>
+      </svg>
+      <p data-i18n="projects.sub">Each project is a discovery — a signal worth following through the dark.</p>
+
+      <div class="project-slider">
+        <button class="slider-btn slider-prev" aria-label="Previous project">&#x2190;</button>
+        <div class="project-list">
+
+          <!-- Secchi Servicios -->
+          <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.secchi.name">Secchi Servicios</h3>
+              <p data-i18n="projects.secchi.desc">A custom desktop application designed to streamline client management and service billing.
+                SecchiServicios focuses on organizing client information and generating service receipts in PDF format,
+                with a structured and user-friendly interface.</p>
+              <p data-i18n="projects.secchi.desc2">Built with C# and .NET using Avalonia UI, the application follows the MVVM architectural pattern and uses SQLite for data persistence.
+                The project aims to simplify administrative workflows and provide a practical solution tailored to the client's needs.</p>
+              <div class="project-tags">
+                <span class="tag">C#</span>
+                <span class="tag">Desktop App</span>
+                <span class="tag">.NET</span>
+                <span class="tag">Avalonia UI</span>
+                <span class="tag">PDF Generation</span>
+                <span class="tag">SQLite</span>
+              </div>
+            </div>
+            <div class="project-carousel">
+              <div class="carousel-track">
+                <img src="img/SecchiServicios01.png" alt="Secchi Servicios 1">
+                <img src="img/SecchiServicios02.png" alt="Secchi Servicios 2">
+                <img src="img/SecchiServicios03.png" alt="Secchi Servicios 3">
+              </div>
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#x2190;</button>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#x2192;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
+            <a href="https://github.com/BenjaminTardivo/SecchiServiciosApp" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">View Project</a>
+          </div>
+
+          <!-- Infinito -->
+          <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.infinito.name">Infinito</h3>
+              <p data-i18n="projects.infinito.desc">A desktop application developed to manage inventory, sales, customers, and suppliers in a centralized system.
+                Infinito helps organize product information, track stock levels,
+                and manage essential business operations through an intuitive graphical interface.</p>
+              <p data-i18n="projects.infinito.desc2">Developed with C# and .NET using Avalonia UI and the MVVM architectural pattern, the application uses Entity Framework Core and SQLite for data persistence.
+                The project demonstrates the application of object-oriented programming, dependency injection,
+                and repository-based data access in a practical business management solution.</p>
+              <div class="project-tags">
+                <span class="tag">C#</span>
+                <span class="tag">.NET</span>
+                <span class="tag">Avalonia UI</span>
+                <span class="tag">Entity Framework Core</span>
+                <span class="tag">Inventory Managment</span>
+                <span class="tag">CRUD</span>
+              </div>
+            </div>
+            <div class="project-carousel">
+              <div class="carousel-track">
+                <img src="img/Infinito01.png" alt="Infinito 1">
+                <img src="img/Infinito02.png" alt="Infinito 2">
+                <img src="img/Infinito03.png" alt="Infinito 3">
+              </div>
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#x2190;</button>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#x2192;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
+            <a href="https://github.com/BenjaminTardivo/InfinitoApp" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">View Project</a>
+          </div>
+
+          <!-- Python Automation Script -->
+           <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.python.name">Python Automation Script</h3>
+              <p data-i18n="projects.python.desc">A Python automation script designed to streamline monthly payment reminders for recurring services.
+                The script retrieves customer and due-date information from Google Sheets and integrates with Evolution API
+                to send WhatsApp reminders before payment deadlines.</p>
+              <p data-i18n="projects.python.desc2">The goal is to reduce manual follow-up, improve payment tracking,
+                and help prevent service interruptions or additional reconnection charges caused by late payments.
+                This project combines spreadsheet data management, API integration, and workflow automation to solve a practical business problem.</p>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">API Integration</span>
+                <span class="tag">Google Sheets</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Evolution API</span>
+              </div>
+            </div>
+           </div>
+
+          <!-- Kill The Lich -->
+          <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.lich.name">Kill The Lich</h3>
+              <p data-i18n="projects.lich.desc">In a world corrupted by a powerful Lich, twisted souls roam the land while the living struggle to survive.
+                Become a beacon of hope, face the creatures that stand in your way,
+                and bring peace to those who can no longer find it.</p>
+              <p data-i18n="projects.lich.desc2">Kill The Lich! is a medieval fantasy metroidvania platformer developed with Unreal Engine 4 for mobile devices,
+                combining platforming and combat in a dark fantasy setting.</p>
+              <div class="project-tags">
+                <span class="tag">Game</span>
+                <span class="tag">Unreal Engine</span>
+                <span class="tag">Mobile Game</span>
+                <span class="tag">Blueprints</span>
+                <span class="tag">Platformer</span>
+              </div>
+            </div>
+            <div class="project-carousel">
+              <div class="carousel-track">
+                <img src="img/KillTheLich.jpeg" alt="Kill The Lich 1">
+                <img src="img/KillTheLich02.png" alt="Kill The Lich 2">
+                <img src="img/KillTheLich03.png" alt="Kill The Lich 3">
+              </div>
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#x2190;</button>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#x2192;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
+            <a href="https://youtu.be/Ajc8rarWcyA" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">View Project</a>
+          </div>
+
+          <!-- No Te Contagies -->
+          <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.contagies.name">No Te Contagies</h3>
+              <p data-i18n="projects.contagies.desc">An educational game that challenges players to take on the role of a school-aged child and
+                avoid contracting measles by making safer choices and practicing preventive behaviors.</p>
+              <p data-i18n="projects.contagies.desc2">Developed with Phaser 3 for PC and mobile platforms,
+                the game combines interactive gameplay with health education,
+                encouraging players to understand the importance of disease prevention through play.</p>
+              <div class="project-tags">
+                <span class="tag">Game</span>
+                <span class="tag">Health</span>
+                <span class="tag">Education</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Phaser 3</span>
+                <span class="tag">2D Game</span>
+              </div>
+            </div>
+            <div class="project-carousel">
+              <div class="carousel-track">
+                <img src="img/No-Te-Contagies.png" alt="No Te Contagies 1">
+                <img src="img/No-Te-Contagies02.png" alt="No Te Contagies 2">
+                <img src="img/No-Te-Contagies03.png" alt="No Te Contagies 3">
+              </div>
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#x2190;</button>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#x2192;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
+            <a href="https://benjamintardivo.github.io/No-Te-Contagies/" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">View Project</a>
+          </div>
+
+          <!-- Bot-Box -->
+          <div class="project-card">
+            <div class="project-detail-text">
+              <h3 data-i18n="projects.botbox.name">Bot-Box</h3>
+              <p data-i18n="projects.botbox.desc">Take control of Mecha-Mecha, a powerful fighting robot,
+                and battle waves of enemies to stop a villain from conquering the world with an army of evil machines.</p>
+              <p data-i18n="projects.botbox.desc2">Bot-Box is a beat 'em up game currently in development with Unity 3D for PC.
+                It combines fast-paced combat with a robot-themed setting,
+                bringing arcade-inspired action and larger-than-life mechanical battles to the player.</p>
+              <div class="project-tags">
+                <span class="tag">Game</span>
+                <span class="tag">Unity</span>
+                <span class="tag">C#</span>
+                <span class="tag">Beat 'em Up</span>
+                <span class="tag">3D Game</span>
+              </div>
+            </div>
+            <div class="project-carousel">
+              <div class="carousel-track">
+                <img src="img/Bot-Box.jpg" alt="Bot Box 1">
+                <img src="img/Bot-Box02.png" alt="Bot Box 2">
+                <img src="img/Bot-Box03.png" alt="Bot Box 3">
+              </div>
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#x2190;</button>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#x2192;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot active"></span>
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+            </div>
+            <a href="#" id="bot-box-link" class="project-link" target="_blank" rel="noopener" data-i18n="projects.view">View Project</a>
+          </div>
+
+        </div>
+        <button class="slider-btn slider-next" aria-label="Next project">&#x2192;</button>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="content-section" id="skills">
+    <div class="ship-log reveal">
+      <h2 data-i18n="skills.heading">Ship Log</h2>
+      <div class="ship-log-body">
+      <svg class="nomai-spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C70 10, 85 25, 85 45 C85 65, 70 80, 50 80 C30 80, 18 68, 18 50 C18 35, 28 23, 42 20 C52 18, 60 24, 62 33 C64 40, 58 48, 50 48 C43 48, 38 42, 40 36"
+              fill="none" stroke="var(--nomai-gold)" stroke-width="2.5" opacity="0.5"/>
+      </svg>
+      <p data-i18n="skills.sub">Tools and skills gathered across many loops of learning.</p>
+
+      <!-- Primary Skills -->
+      <div class="skill-category">
+        <h3 class="skill-category-heading" data-i18n="skills.primary">Primary Skills</h3>
+        <p class="skill-category-desc" data-i18n="skills.primary.desc">Core technologies I build with confidently.</p>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-icon">♯</div>
+            <div class="skill-name">C#</div>
+            <div class="skill-level" data-i18n="level.intermediate">Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">◈</div>
+            <div class="skill-name">OOP</div>
+            <div class="skill-level" data-i18n="level.intermediate">Intermediate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practical Experience -->
+      <div class="skill-category">
+        <h3 class="skill-category-heading" data-i18n="skills.practical">Practical Experience</h3>
+        <p class="skill-category-desc" data-i18n="skills.practical.desc">Technologies used in personal projects and hands-on development.</p>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-icon">⬡</div>
+            <div class="skill-name">.NET</div>
+            <div class="skill-level" data-i18n="level.beginnerIntermediate">Beginner – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">◧</div>
+            <div class="skill-name">Avalonia UI</div>
+            <div class="skill-level" data-i18n="level.beginnerIntermediate">Beginner – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⧉</div>
+            <div class="skill-name">MVVM</div>
+            <div class="skill-level" data-i18n="level.beginnerIntermediate">Beginner – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⊞</div>
+            <div class="skill-name">Entity Framework Core</div>
+            <div class="skill-level" data-i18n="level.beginnerIntermediate">Beginner – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">◉</div>
+            <div class="skill-name">SQLite</div>
+            <div class="skill-level" data-i18n="level.beginner">Beginner</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⟐</div>
+            <div class="skill-name">Python</div>
+            <div class="skill-level" data-i18n="level.beginnerIntermediate">Beginner – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⇄</div>
+            <div class="skill-name">REST API Integration</div>
+            <div class="skill-level" data-i18n="level.beginner">Beginner</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⊕</div>
+            <div class="skill-name">Dependency Injection</div>
+            <div class="skill-level" data-i18n="level.beginner">Beginner</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Tools & Knowledge -->
+      <div class="skill-category">
+        <h3 class="skill-category-heading" data-i18n="skills.additional">Additional Tools & Knowledge</h3>
+        <p class="skill-category-desc" data-i18n="skills.additional.desc">Complementary tools explored across my development environment.</p>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-icon">▤</div>
+            <div class="skill-name">SQL</div>
+            <div class="skill-level" data-i18n="level.basicIntermediate">Basic – Intermediate</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">⊞</div>
+            <div class="skill-name">Docker / Compose</div>
+            <div class="skill-level" data-i18n="level.basic">Basic</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">🐧</div>
+            <div class="skill-name">Linux</div>
+            <div class="skill-level" data-i18n="level.dailyUse">Daily Use</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">◈</div>
+            <div class="skill-name">PostgreSQL</div>
+            <div class="skill-level" data-i18n="level.basicPractical">Basic Practical</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">◉</div>
+            <div class="skill-name">Redis</div>
+            <div class="skill-level" data-i18n="level.basicPractical">Basic Practical</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-icon">☕</div>
+            <div class="skill-name">Java</div>
+            <div class="skill-level" data-i18n="level.beginner">Beginner</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="content-section" id="contact">
+    <div class="ship-log reveal">
+      <h2 data-i18n="contact.heading">Send a Signal</h2>
+      <div class="ship-log-body">
+      <svg class="nomai-spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C70 10, 85 25, 85 45 C85 65, 70 80, 50 80 C30 80, 18 68, 18 50 C18 35, 28 23, 42 20 C52 18, 60 24, 62 33 C64 40, 58 48, 50 48 C43 48, 38 42, 40 36"
+              fill="none" stroke="var(--nomai-gold)" stroke-width="2.5" opacity="0.5"/>
+      </svg>
+      <p data-i18n="contact.sub">Launch a message into the void. I'm always listening for new frequencies.</p>
+
+      <div class="contact-links">
+        <a href="mailto:benjamintardivo@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          benjamintardivo@gmail.com
+        </a>
+        <a href="https://github.com/BenjaminTardivo" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/benjamin-tardivo-8400b5200/" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>
+      <span class="hearth">&#x1f525;</span>
+      <span data-i18n="footer.text">Sit by the campfire. The universe is beautiful.</span>
+      <span class="hearth">&#x1f525;</span>
+      <div class="footer-text">
+          <p data-i18n="footer.copyright">Copyright &copy; 2026 by Benjamin Tardivo | All Rights Reserved.</p>
+      </div>
+    </p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/script.js"></script>
+  <script src="js/lang.js"></script>
+</body>
+</html>
