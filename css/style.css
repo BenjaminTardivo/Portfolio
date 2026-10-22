@@ -150,7 +150,7 @@ body {
 
 .orbit-ring {
   position: relative;
-  max-width: 950px;
+  max-width: min(950px, 80vh);
   margin: 0 auto;
   aspect-ratio: 1;
 }
@@ -160,7 +160,7 @@ body {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px; height: 280px;
+  width: 180px; height: 180px;
   cursor: pointer;
   transition: transform 0.3s, filter 0.3s;
   z-index: 5;
@@ -248,7 +248,7 @@ body {
 
 /* Planet sizes & colors (position comes from JS orbit) */
 /*Hourglass Twins — self-rotating binary pair */
-.planet-about { width: 55px; height: 55px; filter: drop-shadow(0 0 8px rgba(232, 168, 124, 0.5)); }
+.planet-about { width: 40px; height: 40px; filter: drop-shadow(0 0 8px rgba(232, 168, 124, 0.5)); }
 .planet-about:hover { filter: drop-shadow(0 0 18px rgba(232, 168, 124, 0.9)); }
 .planet-about img { animation: self-rotate 20s linear infinite; }
 @keyframes self-rotate {
@@ -256,7 +256,7 @@ body {
   to   { transform: rotate(360deg); }
 }
 /*Timber Hearth*/
-.planet-projects { width: 40px; height: 40px; filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.5)); }
+.planet-projects { width: 30px; height: 30px; filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.5)); }
 .planet-projects:hover { filter: drop-shadow(0 0 18px rgba(72, 165, 75, 0.9)); }
 .planet-projects img { animation: self-rotate 20s linear infinite; }
 @keyframes self-rotate {
@@ -264,7 +264,7 @@ body {
   to   { transform: rotate(360deg); }
 }
 /*Brittle Hollow*/
-.planet-skills { width: 45px; height: 45px; filter: drop-shadow(0 0 8px rgba(100, 180, 255, 0.5)); }
+.planet-skills { width: 32px; height: 32px; filter: drop-shadow(0 0 8px rgba(100, 180, 255, 0.5)); }
 .planet-skills:hover { filter: drop-shadow(0 0 18px rgba(100, 180, 255, 0.9)); }
 .planet-skills img { animation: self-rotate 20s linear infinite; }
 @keyframes self-rotate {
@@ -272,26 +272,30 @@ body {
   to   { transform: rotate(360deg); }
 }
 /*Giant's Deep*/
-.planet-contact { width: 70px; height: 70px; filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.5)); }
+.planet-contact { width: 56px; height: 56px; filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.5)); }
 .planet-contact:hover { filter: drop-shadow(0 0 18px rgba(76, 175, 80, 0.9)); }
 .planet-contact img { animation: self-rotate 20s linear infinite; }
 @keyframes self-rotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+/*Dark Bramble*/
+.planet-services { width: 46px; height: 46px; filter: drop-shadow(0 0 8px rgba(160, 120, 255, 0.5)); }
+.planet-services:hover { filter: drop-shadow(0 0 18px rgba(160, 120, 255, 0.9)); }
+.planet-services img { animation: self-rotate 20s linear infinite; }
 
 /* Moon system — CSS custom properties for flexible orbits */
 .moon-orbit {
   position: absolute;
   top: 0; left: 0;
   width: 0; height: 0;
-  --orbit-radius: 40px;
+  --orbit-radius: 34px;
   --orbit-speed: 12s;
   animation: moon-revolve var(--orbit-speed) linear infinite;
 }
 .moon {
   position: absolute;
-  width: 20px; height: 20px;
+  width: 18px; height: 18px;
   object-fit: contain;
   transform: translate(-50%, -50%) translateX(var(--orbit-radius));
   filter: drop-shadow(0 0 4px rgba(200, 200, 200, 0.4));
@@ -310,25 +314,25 @@ body {
 
 /* Attlerock — default orbit around Timber Hearth */
 .moon-attlerock {
-  --orbit-radius: 38px;
+  --orbit-radius: 32px;
   --orbit-speed: 12s;
 }
 
 /* Hollow's Lantern — orbiting Brittle Hollow */
 .moon-hollows-lantern {
-  --orbit-radius: 37px;
+  --orbit-radius: 31px;
   --orbit-speed: 10s;
 }
 
 /* Quantic Moon — orbiting Giant's Deep */
 .moon-quantic {
-  --orbit-radius: 50px;
+  --orbit-radius: 42px;
   --orbit-speed: 14s;
 }
 
 /* The gravity canon — orbiting Giant's Deep (reverse direction) */
 .moon-canon {
-  --orbit-radius: 50px;
+  --orbit-radius: 42px;
   --orbit-speed: 9s;
   animation-direction: reverse;
 }
@@ -336,7 +340,7 @@ body {
 /* Pause moon when orbits are off */
 .orbit-ring:not(.orbits-on) .moon-orbit,
 .orbit-ring:not(.orbits-on) .moon,
-.orbit-ring:not(.orbits-on) .planet-about img {
+.orbit-ring:not(.orbits-on) .planet img {
   animation-play-state: paused;
 }
 
@@ -353,6 +357,7 @@ body {
 .orbit-projects  { border-color: rgba(76, 175, 80, 0.18); }
 .orbit-skills    { border-color: rgba(100, 180, 255, 0.18); }
 .orbit-contact   { border-color: rgba(76, 175, 80, 0.18); }
+.orbit-services  { border-color: rgba(160, 120, 255, 0.18); }
 
 /* Orbit toggle */
 .orbit-controls {
@@ -885,6 +890,64 @@ body {
   font-family: 'Space Mono', monospace;
 }
 
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.service-card {
+  background: rgba(255, 140, 50, 0.02);
+  border: 1px solid rgba(255, 140, 50, 0.1);
+  border-radius: 5px;
+  padding: 1.6rem 1.4rem;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nomai-gold);
+  box-shadow: 0 0 6px rgba(196, 160, 53, 0.4);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+  border-color: rgba(255, 140, 50, 0.35);
+  box-shadow: 0 0 18px rgba(255, 107, 43, 0.1);
+  transform: translateY(-3px);
+}
+.service-card:hover::before {
+  background: var(--campfire-orange);
+  box-shadow: 0 0 10px rgba(255, 107, 43, 0.6);
+}
+
+.service-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--campfire-orange);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.service-card p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
 /* ===== SKILLS ===== */
 .skill-category {
   margin-top: 2.5rem;
@@ -1124,6 +1187,7 @@ body {
   .planet-about, .planet-skills { width: 40px; height: 40px; }
   .planet-projects { width: 35px; height: 35px; }
   .planet-contact { width: 50px; height: 50px; }
+  .planet-services { width: 45px; height: 45px; }
   .moon { width: 14px; height: 14px; }
   .moon-attlerock { --orbit-radius: 28px; }
   .moon-hollows-lantern { --orbit-radius: 27px; }
@@ -1233,6 +1297,7 @@ body {
   .planet-about, .planet-skills { width: 30px; height: 30px; }
   .planet-projects { width: 28px; height: 28px; }
   .planet-contact { width: 40px; height: 40px; }
+  .planet-services { width: 35px; height: 35px; }
   .moon { width: 12px; height: 12px; }
   .moon-attlerock { --orbit-radius: 22px; }
   .moon-hollows-lantern { --orbit-radius: 22px; }

@@ -15,6 +15,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.about': 'About Me',
     'nav.projects': 'Projects',
+    'nav.services': 'Services',
     'nav.skills': 'Skills',
     'nav.contact': 'Contact',
 
@@ -75,6 +76,19 @@ discoveries I've made along the way.`,
     'projects.botbox.desc': 'Take control of Mecha-Mecha, a powerful fighting robot, and battle waves of enemies to stop a villain from conquering the world with an army of evil machines.',
     'projects.botbox.desc2': "Bot-Box is a beat 'em up game currently in development with Unity 3D for PC. It combines fast-paced combat with a robot-themed setting, bringing arcade-inspired action and larger-than-life mechanical battles to the player.",
 
+    // Services
+    'services.heading': 'What I Can Build',
+    'services.sub': 'From everyday problems to custom software solutions. Let\'s build something useful.',
+
+    'service.desktopapp.name': 'Custom Desktop Applications',
+    'service.desktopapp.desc': 'Build desktop software to manage inventory, customers, sales and other business operations - designed around your needs.',
+    'service.businessmanagement.name': 'Business Management Systems',
+    'service.businessmanagement.desc': 'Systems designed to organize business information, manage records, and simplify tasks such as customer tracking, sales management, and receipt generation.',
+    'service.automation.name': 'Task Automation',
+    'service.automation.desc': 'Automation of repetitive processes, reminders, data retrieval, and notifications to reduce manual work and improve efficiency.',
+    'service.gamedev.name': 'Game Development',
+    'service.gamedev.desc': 'Development of video games and interactive experiences, from implementing gameplay mechanics and game systems to building prototypes and custom features tailored to each project.',
+
     // Skills
     'skills.heading': 'Ship Log',
     'skills.sub': 'Tools and skills gathered across many loops of learning.',
@@ -118,6 +132,7 @@ discoveries I've made along the way.`,
     'nav.home': 'Inicio',
     'nav.about': 'Sobre Mí',
     'nav.projects': 'Proyectos',
+    'nav.services': 'Servicios',
     'nav.skills': 'Habilidades',
     'nav.contact': 'Contacto',
 
@@ -177,6 +192,19 @@ descubrimientos que he hecho en el camino.`,
     'projects.botbox.name': 'Bot-Box',
     'projects.botbox.desc': 'Toma el control de Mecha-Mecha, un poderoso robot de combate, y enfréntate a oleadas de enemigos para detener a un villano que quiere conquistar el mundo con un ejército de máquinas malignas.',
     'projects.botbox.desc2': 'Bot-Box es un juego beat \'em up actualmente en desarrollo con Unity 3D para PC. Combina combate a gran velocidad con un ambientado temática de robots, trayendo acción inspirada en los arcades y batallas mecánicas descomunales al jugador.',
+
+    // Services
+    'services.heading': 'Lo Que Puedo Construir',
+    'services.sub': 'De problemas cotidianos a soluciones de software a medida. Construyamos algo útil.',
+
+    'service.desktopapp.name': 'Aplicaciones de Escritorio Personalizadas',
+    'service.desktopapp.desc': 'Desarrollo de software de escritorio para gestionar inventario, clientes, ventas y otras operaciones comerciales - diseñado según tus necesidades.',
+    'service.businessmanagement.name': 'Sistemas de Gestión Empresarial',
+    'service.businessmanagement.desc': 'Sistemas diseñados para organizar información empresarial, gestionar registros y simplificar tareas como el seguimiento de clientes, la gestión de ventas y la generación de recibos.',
+    'service.automation.name': 'Automatización de Tareas',
+    'service.automation.desc': 'Automatización de procesos repetitivos, recordatorios, obtención de datos y notificaciones para reducir el trabajo manual y mejorar la eficiencia.',
+    'service.gamedev.name': 'Desarrollo de Videojuegos',
+    'service.gamedev.desc': 'Desarrollo de videojuegos y experiencias interactivas, desde la implementación de mecánicas y sistemas de juego hasta la creación de prototipos y características personalizadas para cada proyecto.',
 
     // Skills
     'skills.heading': 'Bitácora de Nave',

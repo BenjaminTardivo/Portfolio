@@ -81,10 +81,11 @@
     </div>
 
     <div class="orbit-ring">
-      <div class="orbit-line orbit-about" data-radius="0.26"></div>
-      <div class="orbit-line orbit-projects" data-radius="0.34"></div>
-      <div class="orbit-line orbit-skills" data-radius="0.42"></div>
-      <div class="orbit-line orbit-contact" data-radius="0.50"></div>
+      <div class="orbit-line orbit-about" data-radius="0.24"></div>
+      <div class="orbit-line orbit-projects" data-radius="0.31"></div>
+      <div class="orbit-line orbit-skills" data-radius="0.38"></div>
+      <div class="orbit-line orbit-contact" data-radius="0.44"></div>
+      <div class="orbit-line orbit-services" data-radius="0.50"></div>
 
       <!-- Sun -->
       <div class="sun" onclick="scrollToSection('home')">
@@ -93,7 +94,7 @@
       </div>
 
       <!-- Planet: About — Hourglass Twins (closest) -->
-      <div class="planet-orbit" data-radius="0.26" data-speed="8" data-start="-90" data-dir="-1">
+      <div class="planet-orbit" data-radius="0.24" data-speed="8" data-start="-90" data-dir="-1">
         <a class="planet planet-about" href="#about">
           <img src="img/Hourglass TwinsC.svg" alt="Hourglass Twins">
           <span class="planet-label" data-i18n="nav.about">About Me</span>
@@ -101,7 +102,7 @@
       </div>
 
       <!-- Planet: Projects — Timber Hearth -->
-      <div class="planet-orbit" data-radius="0.34" data-speed="5" data-start="0" data-dir="-1">
+      <div class="planet-orbit" data-radius="0.31" data-speed="5" data-start="0" data-dir="-1">
         <a class="planet planet-projects" href="#projects">
           <img src="img/TimberHearthSolo.svg" alt="Timber Hearth">
           <span class="planet-label" data-i18n="nav.projects">Projects</span>
@@ -113,10 +114,10 @@
       </div>
 
       <!-- Planet: Skills — Brittle Hollow -->
-      <div class="planet-orbit" data-radius="0.42" data-speed="8" data-start="90" data-dir="1">
-        <a class="planet planet-skills" href="#skills">
+      <div class="planet-orbit" data-radius="0.38" data-speed="8" data-start="90" data-dir="1">
+        <a class="planet planet-skills" href="#services">
           <img src="img/Brittle HollowA.svg" alt="Brittle Hollow">
-          <span class="planet-label" data-i18n="nav.skills">Skills</span>
+          <span class="planet-label" data-i18n="nav.services">Services</span>
         </a>
         <!-- Moon: Hollow's Lantern -->
         <div class="moon-orbit moon-hollows-lantern">
@@ -124,11 +125,11 @@
         </div>
       </div>
 
-      <!-- Planet: Contact — Giant's Deep (farthest) -->
-      <div class="planet-orbit" data-radius="0.50" data-speed="5" data-start="180" data-dir="1">
-        <a class="planet planet-contact" href="#contact">
+      <!-- Planet: Contact — Giant's Deep -->
+      <div class="planet-orbit" data-radius="0.44" data-speed="5" data-start="180" data-dir="1">
+        <a class="planet planet-contact" href="#skills">
           <img src="img/Giant's DeepA.svg" alt="Giant's Deep">
-          <span class="planet-label" data-i18n="nav.contact">Contact</span>
+          <span class="planet-label" data-i18n="nav.skills">Skills</span>
         </a>
         <!-- Moon 1: Quantic Moon -->
         <div class="moon-orbit moon-quantic">
@@ -138,6 +139,14 @@
         <div class="moon-orbit moon-canon">
           <img class="moon" src="img/Gravity Canon.svg" alt="The Interloper">
         </div>
+      </div>
+
+      <!-- Planet: Services — Dark Bramble -->
+      <div class="planet-orbit" data-radius="0.50" data-speed="4" data-start="45" data-dir="-1">
+        <a class="planet planet-services" href="#contact">
+          <img src="img/DarkBramble.png" alt="Dark Bramble">
+          <span class="planet-label" data-i18n="nav.contact">Contact</span>
+        </a>
       </div>
     </div>
   </section>
@@ -193,10 +202,10 @@
         <h3 class="education-heading" data-i18n="about.edu">🎓 – Education</h3>
         <div class="education-list">
           <div class="education-entry">
-            <span class="education-year">2019 — 2023</span>
+            <span class="education-year">2026 — Ongoing</span>
             <div class="education-info">
-              <h4 data-i18n="about.edu1.degree">Technical Degree in Video Game Development and Interactiva Narrative</h4>
-              <p>Universidad Nacional de Rafaela</p>
+              <h4 data-i18n="about.edu3.degree">University Technical Degree in Programming</h4>
+              <p>Universidad Tecnologica Nacional</p>
             </div>
           </div>
           <div class="education-entry">
@@ -207,10 +216,10 @@
             </div>
           </div>
           <div class="education-entry">
-            <span class="education-year">2026 — Ongoing</span>
+            <span class="education-year">2019 — 2023</span>
             <div class="education-info">
-              <h4 data-i18n="about.edu3.degree">University Technical Degree in Programming</h4>
-              <p>Universidad Tecnologica Nacional</p>
+              <h4 data-i18n="about.edu1.degree">Technical Degree in Video Game Development and Interactiva Narrative</h4>
+              <p>Universidad Nacional de Rafaela</p>
             </div>
           </div>
           <div class="education-entry">
@@ -438,6 +447,46 @@
         </div>
         <button class="slider-btn slider-next" aria-label="Next project">&#x2192;</button>
       </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="content-section" id="services">
+    <div class="ship-log reveal">
+      <h2 data-i18n="services.heading">What I Can Build</h2>
+      <div class="ship-log-body">
+        <svg class="nomai-spiral" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C70 10, 85 25, 85 45 C85 65, 70 80, 50 80 C30 80, 18 68, 18 50 C18 35, 28 23, 42 20 C52 18, 60 24, 62 33 C64 40, 58 48, 50 48 C43 48, 38 42, 40 36"
+              fill="none" stroke="var(--nomai-gold)" stroke-width="2.5" opacity="0.5"/>
+        </svg>
+        <p data-i18n="services.sub">From everyday problems to custom software solutions. Let's build something useful</p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <h3 data-i18n="service.desktopapp.name">Custom Desktop Applications</h3>
+            <p data-i18n="service.desktopapp.desc">Build desktop software to manage inventory, customers,
+                sales and other business operations - designed around your needs</p>
+          </div>
+
+          <div class="service-card">
+            <h3 data-i18n="service.businessmanagement.name">Business Management Systems</h3>
+            <p data-i18n="service.businessmanagement.desc">Systems designed to organize business information, manage records,
+                and simplify tasks such as customer tracking, sales management, and receipt generation.</p>
+          </div>
+
+          <div class="service-card">
+            <h3 data-i18n="service.automation.name">Task Automation</h3>
+            <p data-i18n="service.automation.desc">Automation of repetitive processes, reminders, data retrieval,
+                and notifications to reduce manual work and improve efficiency.</p>
+          </div>
+
+          <div class="service-card">
+            <h3 data-i18n="service.gamedev.name">Game Development</h3>
+            <p data-i18n="service.gamedev.desc">Development of video games and interactive experiences,
+              from implementing gameplay mechanics and game systems to building prototypes and custom features tailored to each project.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
